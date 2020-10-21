@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Se connecter
+{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <div class="d-flex justify-content-center">
+            {{ form_start(form) }}
+            <div class="card p-3" style="width: 35rem;">
+                <h2>Se connecter</h2>
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+                {{ form_label(form.password) }}
+                {{ form_widget(form.password) }}
+                <div class="row mt-3 justify-content-between">
+                    <div class="col-6">
+                        <a href="#">
+                            Mots de passe oublié ?
+                        </a>
+                    </div>
+                    <div class="col-6 text-right">
+                        <button type="submit" form="form" class="btn btn-primary">Se connecter</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
