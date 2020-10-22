@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "364caac7cff89fc89b0823e62260d28c",
+    "content-hash": "6bc7d4e054c0be187c6796531def5f4a",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1724,6 +1724,51 @@
                 }
             ],
             "time": "2020-06-27T23:57:46+00:00"
+        },
+        {
+            "name": "junker/symfony-jsend-response",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Junker/JSendResponse.git",
+                "reference": "e35ab4a8fffedf78837b40d922925358353ec7d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Junker/JSendResponse/zipball/e35ab4a8fffedf78837b40d922925358353ec7d3",
+                "reference": "e35ab4a8fffedf78837b40d922925358353ec7d3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.2",
+                "symfony/http-foundation": "^2.0 || ^3.0 || ^4.0 || ^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Junker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Kosenkov",
+                    "email": "dk-junker@ya.ru"
+                }
+            ],
+            "description": "JSendResponse Component for HttpFoundation based applications (Symfony, Silex, Drupal etc.)",
+            "keywords": [
+                "drupal",
+                "jsend",
+                "response",
+                "silex",
+                "symfony"
+            ],
+            "time": "2020-04-17T04:44:03+00:00"
         },
         {
             "name": "laminas/laminas-code",

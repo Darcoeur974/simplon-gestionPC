@@ -117,6 +117,9 @@
             ".php_cs.dist"
         ]
     },
+    "junker/symfony-jsend-response": {
+        "version": "0.2.0"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
