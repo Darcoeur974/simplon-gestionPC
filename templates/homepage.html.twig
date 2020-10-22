@@ -7,25 +7,86 @@
 {% block body %}
     <div class="my-5">
         <div class="row my-3">
-            <input type="text">
+            <div class="col-6">
+                <div>Date-picker here</div>
+            </div>
+            <div class="col-6 text-right">
+                <a class="rounded" data-toggle="modal" data-target="#modal-create-computer">
+                    <i class="fas fa-plus fa-2x"></i>
+                </a>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-4">
-                <div class="card">
-                    Ordinateur
+        <div class="row justify-content-center">
+        <div class="row justify-content-center">
+            {% for computer in computers %}
+                <div class="card p-3 m-3" style="width: 300px">
+                    <div class="row">
+                        <div class="col-10">
+                            <h3>{{ computer.name }}</h3>
+                        </div>
+                        <div class="col-2 text-right">
+                            <a href=""><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                    </div>
+                    {% for hour in hours %}
+                        <div class="row py-2 border">
+                                <div class="col-4">
+                                    <div>{{ hour }}</div>
+                                </div>
+                                <div class="col-4">
+                                    <div>---</div>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <a class="rounded" data-toggle="modal" data-target="#modal-{{ computer.name }}">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                </div>
+                        </div>
+                    {% endfor %}
                 </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    Ordinateur
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    Ordinateur
-                </div>
-            </div>
-
+            {% endfor %}
         </div>
     </div>
+
+    {% for computer in computers %}
+        <div class="modal fade" id="modal-{{ computer.name }}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ computer.name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary">Attribuer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-create-computer" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ajouter un nouvel Ordinateur</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
 {% endblock %}
