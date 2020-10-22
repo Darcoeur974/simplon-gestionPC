@@ -28,13 +28,13 @@ class Assign
     private $hour;
 
     /**
-     * @ORM\ManyToOne(targetEntity=client::class, inversedBy="assigns")
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="assigns")
      * @ORM\JoinColumn(nullable=false)
      */
     private $id_client;
 
     /**
-     * @ORM\ManyToOne(targetEntity=computer::class, inversedBy="assigns")
+     * @ORM\ManyToOne(targetEntity=Computer::class, inversedBy="assigns")
      * @ORM\JoinColumn(nullable=false)
      */
     private $id_computer;
