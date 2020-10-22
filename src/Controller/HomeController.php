@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\form\ClientType;
 use App\form\ComputerType;
 use App\Repository\ClientRepository;
 use App\Repository\ComputerRepository;
@@ -20,11 +21,12 @@ class HomeController extends AbstractController
     public function __invoke(
         Request $request, ComputerRepository $computerRepository, ClientRepository $clientRepository
     ) {
-        $form = $this->createForm(ComputerType::class);
-        $form->handleRequest($request);
+        $formComputer = $this->createForm(ComputerType::class);
+        $formClient = $this->createForm(ClientType::class);
+        $formComputer->handleRequest($request);
+        $formClient->handleRequest($request);
 
         $computers = $computerRepository->findAll();
-        $clients = $clientRepository->findAll();
 
         $hours = [
             '8h',
@@ -42,7 +44,8 @@ class HomeController extends AbstractController
         return $this->render('homepage.html.twig', [
             'computers' => $computers,
             'hours' => $hours,
-            'form' => $form->createView(),
+            'formComputer' => $formComputer->createView(),
+            'formClient' => $formClient->createView(),
         ]);
     }
 }

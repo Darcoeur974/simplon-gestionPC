@@ -12,8 +12,8 @@ class ClientFixtures extends Fixture
     {
         for ($i = 0; $i < 20; $i++) {
             $client = new Client();
-            $client->setFirstname('Client-FN-'.$i);
-            $client->setLastname('Client-LN-'.$i);
+            $client->setFirstname('Client-'.$i);
+            $client->setLastname('Client-'.$i);
             $manager->persist($client);
         }
 

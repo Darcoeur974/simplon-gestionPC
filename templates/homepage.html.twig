@@ -29,17 +29,17 @@
                     </div>
                     {% for hour in hours %}
                         <div class="row py-2 border">
-                                <div class="col-4">
-                                    <div>{{ hour }}</div>
-                                </div>
-                                <div class="col-4">
-                                    <div>---</div>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <a class="rounded" data-toggle="modal" data-target="#modal-{{ computer.name }}">
-                                        <i class="fas fa-plus"></i>
-                                    </a>
-                                </div>
+                            <div class="col-4">
+                                <div>{{ hour }}</div>
+                            </div>
+                            <div class="col-4">
+                                <div>---</div>
+                            </div>
+                            <div class="col-4 text-right">
+                                <a class="rounded" data-toggle="modal" data-target="#modal-{{ computer.name }}">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
@@ -53,25 +53,20 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{ computer.name }}</h5>
+                        <h5 class="modal-title" id="ModalLabel">{{ computer.name }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form action="">
-                            <label>
-                                Nom du client
-                                <input type="text">
-                            </label>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Attribuer</button>
+                    <div class="modal-body p-3">
+                        <h5 class="modal-title" id="ModalLabel">Ajouter un nouveau client</h5>
+                        {{ form_start(formClient) }}
+                        {{ form_end(formClient) }}
                     </div>
                 </div>
             </div>
         </div>
+
     {% endfor %}
     <div class="modal fade" id="modal-create-computer" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -82,9 +77,9 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-content p-3">
-                        {{ form_start(form) }}
-                        {{ form_end(form) }}
+                    <div class="modal-body p-3">
+                        {{ form_start(formComputer) }}
+                        {{ form_end(formComputer) }}
                     </div>
                 </div>
             </div>
