@@ -3,13 +3,12 @@
 namespace App\form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class LoginType extends AbstractType
+class ComputerType extends AbstractType
 {
     private UrlGeneratorInterface $urlGenerator;
 
@@ -21,36 +20,37 @@ class LoginType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', null, [
+            ->add('name', null, [
                 'required' => true,
-                'label' => 'Email',
+                'label' => 'Nom de l\'ordinateur',
                 'label_attr' => [
                     'class' => 'mt-3',
                 ],
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Votre email',
+                    'placeholder' => 'Nom de l\'ordinateur',
                 ],
             ])
-            ->add('password', PasswordType::class, [
-                'required' => true,
-                'label' => 'Mot de passe',
-                'label_attr' => [
-                    'class' => 'mt-3',
-                ],
+            ->add('save', SubmitType::class, [
+                'label' => 'Ajouter',
                 'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Votre mot de passe',
+                    'class' => 'btn btn-primary mt-2',
+                ],
+                'row_attr' => [
+                    'class' => 'text-right',
                 ],
             ])
-            ->add('save', SubmitType::class, ['label' => 'Se connecter'])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'action' => $this->urlGenerator->generate('computer.new'),
+            'method' => 'POST',
+            'attr' => [
+                'id' => 'computer-new',
+            ],
         ]);
     }
 }
