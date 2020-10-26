@@ -12,7 +12,9 @@
     {% include '_partials/navbar.html.twig' %}
 
     <div class="container">
-        {% block body %}{% endblock %}
+        {% block body %}
+        {% endblock %}
+        {% include '_partials/modalClient.html.twig' %}
     </div>
 
     {% block javascripts %}{% endblock %}

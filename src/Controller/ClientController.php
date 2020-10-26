@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Client;
-use App\Entity\Computer;
 use Junker\JsendResponse\Exceptions\JSendSpecificationViolation;
 use Junker\JsendResponse\JSendFailResponse;
 use Junker\JsendResponse\JSendSuccessResponse;

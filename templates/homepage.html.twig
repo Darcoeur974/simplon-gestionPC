@@ -18,13 +18,15 @@
         </div>
         <div class="row justify-content-center" id="data-computer">
             {% for computer in computers %}
-                <div class="card p-3 m-3" id="card-{{ computer.name }}" style="width: 300px">
+                <div class="card p-3 m-3" id="{{ computer.id }}" style="width: 300px">
                     <div class="row">
                         <div class="col-10">
                             <h3>{{ computer.name }}</h3>
                         </div>
                         <div class="col-2 text-right">
-                            <a href="#" class="delete-computer"><i class="fas fa-trash-alt"></i></a>
+                            <a href="{{ path('computer.delete', {id: computer.id}) }}" class="delete-computer">
+                                <i class="fas fa-trash-alt" style="color: red"></i>
+                            </a>
                         </div>
                     </div>
                     {% for hour in hours %}
@@ -32,13 +34,35 @@
                             <div class="col-4">
                                 <div>{{ hour }}</div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 assign-{{ computer.name }}-{{ hour }}">
                                 <div>---</div>
                             </div>
                             <div class="col-4 text-right">
-                                <a class="rounded" data-toggle="modal" data-target="#modal-{{ computer.name }}">
+                                <a class="rounded" data-toggle="modal" data-target="#modal-assign-{{ computer.name }}-{{ hour }}">
                                     <i class="fas fa-plus"></i>
                                 </a>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="modal-assign-{{ computer.name }}-{{ hour }}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Attribuer l'Ordinateur : {{ computer.name }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body p-3">
+                                        <div class="d-flex justify-content-between">
+                                            <label for="assign-client">{{ hour }}</label>
+                                            <input id="assign-client" type="text">
+                                            <button class="btn btn-primary">Assigner</button>
+                                            <a class="rounded" data-toggle="modal" data-target="#modal-computer">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     {% endfor %}
@@ -47,42 +71,20 @@
         </div>
     </div>
 
-    {% for computer in computers %}
-
-        <div class="modal fade" id="modal-{{ computer.name }}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ModalLabel">{{ computer.name }}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body p-3">
-                        <h5 class="modal-title" id="ModalLabel">Ajouter un nouveau client</h5>
-                        {{ form_start(formClient) }}
-                        {{ form_end(formClient) }}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    {% endfor %}
     <div class="modal fade" id="modal-create-computer" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ajouter un nouvel Ordinateur</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body p-3">
-                        {{ form_start(formComputer) }}
-                        {{ form_end(formComputer) }}
-                    </div>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter un nouvel Ordinateur</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-3">
+                    {{ form_start(formComputer) }}
+                    {{ form_end(formComputer) }}
                 </div>
             </div>
         </div>
-
+    </div>
 {% endblock %}

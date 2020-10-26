@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Computer;
+use App\Repository\ComputerRepository;
 use Junker\JsendResponse\Exceptions\JSendSpecificationViolation;
 use Junker\JsendResponse\JSendFailResponse;
 use Junker\JsendResponse\JSendSuccessResponse;
@@ -20,7 +21,7 @@ class ComputerController extends AbstractController
      *
      * @throws JSendSpecificationViolation
      */
-    public function index(Request $request)
+    public function create(Request $request)
     {
         if (!$request) {
             return new JSendFailResponse([
@@ -44,5 +45,27 @@ class ComputerController extends AbstractController
         return new JSendFailResponse([
             'error' => 'Bad request.',
         ], JSendFailResponse::HTTP_BAD_REQUEST);
+    }
+
+    /**
+     * @Route("/computer/{id}/delete", name="computer.delete", methods={"DELETE"})
+     *
+     * @throws JSendSpecificationViolation
+     */
+    public function delete(Request $request, ComputerRepository $computerRepository)
+    {
+        $computerID = $request->attributes->get('id');
+        $computer = $computerRepository->findBy([
+            'id' => $computerID,
+        ]);
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        if (isset($entityManager)) {
+            $entityManager->remove($computer[0]);
+        }
+        $entityManager->flush();
+
+        return new JSendSuccessResponse(null, JSendSuccessResponse::HTTP_CREATED);
     }
 }

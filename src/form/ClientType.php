@@ -60,7 +60,7 @@ class ClientType extends AbstractType
             'action' => $this->urlGenerator->generate('client.new'),
             'method' => 'POST',
             'attr' => [
-                'id' => 'client-new',
+                'class' => 'client-new',
             ],
         ]);
     }

@@ -33,7 +33,15 @@ $(() => {
     $('.delete-computer').click((e) => {
         e.preventDefault()
 
-        let cible = e.currentTarget.parentElement.parentElement.parentElement
+        const cible = e.currentTarget.parentElement.parentElement.parentElement
+        console.log(cible.attributes['id'].value)
+        try {
+            $.ajax({
+                url: '/computer/' + cible.attributes['id'].value + '/delete',
+                method: 'DELETE',
+            })
+        } catch (e) {
+        }
 
         cible.remove()
     })
